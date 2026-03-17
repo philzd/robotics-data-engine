@@ -591,7 +591,7 @@ Please contact the author for permission before reusing or redistributing the co
 
 ## Author
 
-Phil Do
+Philippe Do
 
 Focus areas:
 - robotics ML infrastructure
