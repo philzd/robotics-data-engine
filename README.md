@@ -29,7 +29,8 @@ Cross-modal alignment
 ↓
 Episode extraction
 ↓
-Dataset validation + health metrics (missing data ratio, alignment error, episode statistics)
+Dataset validation + health metrics
+(missing data ratio, alignment error, episode statistics)
 ↓
 Versioned dataset artifacts
 ```
