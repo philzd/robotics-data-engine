@@ -16,8 +16,10 @@ The pipeline performs ingestion, cross-modal alignment, episode extraction, data
 
 This repository implements robotics_data_engine, a deterministic dataset
 construction pipeline for multimodal robotics logs.
+
 ```text
-Raw logs (video + sensors)
+Raw logs
+(video + sensors)
 ↓
 Deterministic ingestion
 ↓
@@ -94,6 +96,7 @@ The pipeline outputs trajectory episodes, which represent continuous aligned seg
 
 A downstream training pipeline can use `episodes.json` to gather the corresponding video frames and sensor measurements for each episode and convert them into sliding windows used as training samples for machine learning models.
 
+```text
 Raw robot logs
 (video + IMU)
         │
@@ -117,6 +120,7 @@ Training data loader
         │
         ▼
 Model training
+```
 
 In practice, the training loader reads the episode boundaries, collects the corresponding frames and sensor values, and converts each trajectory segment into training batches used by the model.
 
