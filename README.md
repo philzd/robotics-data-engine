@@ -215,24 +215,37 @@ The pipeline itself is designed to operate on real robotics datasets containing
 video and multi-sensor logs.
 
 1. Clone the repository
-- git clone https://github.com/philzd/robotics_data_engine.git
-- cd robotics_data_engine
+
+```bash
+git clone https://github.com/philzd/robotics_data_engine.git
+cd robotics_data_engine
+```
 
 2. Create a Python environment and install dependencies:
-- python -m venv env
-- source env/bin/activate
-- pip install -e .
-- pip install -r requirements.txt
+
+```bash
+python -m venv env
+source env/bin/activate
+pip install -e .
+pip install -r requirements.txt
+```
 
 3. Run a demo session:
-- python -m robotics_data_engine ingest \
-    --session demo \
-    --video examples/dummy_video.mp4 \
-    --sensor examples/dummy_imu.csv
-- python -m robotics_data_engine align --session demo
+
+```bash
+python -m robotics_data_engine ingest \
+  --session demo \
+  --video examples/dummy_video.mp4 \
+  --sensor examples/dummy_imu.csv
+
+python -m robotics_data_engine align --session demo
+```
 
 4. Inspect dataset health:
-- python -m robotics_data_engine dataset-summary
+   
+```bash
+python -m robotics_data_engine dataset-summary
+```
 
 This will produce alignment artifacts, episode segmentation results, and dataset health metrics for the session.
 
@@ -241,6 +254,7 @@ This will produce alignment artifacts, episode segmentation results, and dataset
 ## Why This Project Exists
 
 Modern robotics and embodied AI systems rely on large multimodal datasets containing:
+
 - video
 - IMU
 - LiDAR
@@ -360,17 +374,21 @@ logs/
 ### Folder meanings
 
 **raw/**
+
 - Immutable copies of original inputs
 - Never edited after ingest
 
 **derived/**
+
 - Generated artifacts derived from raw data
 - Fully rebuildable
 
 **manifests/**
+
 - Dataset provenance and fingerprinting metadata
 
 **logs/**
+
 - CLI execution logs
 
 This directory contract ensures datasets remain reproducible and auditable.
@@ -513,15 +531,16 @@ Example CLI output:
 robotics_data_engine enforces three core guarantees.
 
 - **Determinism**:
-    Given identical inputs and configuration, derived artifacts are identical.
+  Given identical inputs and configuration, derived artifacts are identical.
 
 - **Reproducibility**:
-    Datasets can be rebuilt from raw data and manifest metadata.
+  Datasets can be rebuilt from raw data and manifest metadata.
 
 - **Provenance**:
-    Every artifact records its origin, configuration, and creation time.
+  Every artifact records its origin, configuration, and creation time.
 
 These guarantees are enforced through:
+
 - immutable session identity
 - content hashing
 - explicit manifests
@@ -534,20 +553,20 @@ These guarantees are enforced through:
 robotics_data_engine enforces several guarantees over constructed datasets.
 
 - **Deterministic dataset construction**:
-    Given identical raw inputs and configuration, the pipeline produces identical derived artifacts.
-    Mechanism: canonical timestamp extraction, deterministic alignment logic, and immutable session artifacts.
+  Given identical raw inputs and configuration, the pipeline produces identical derived artifacts.
+  Mechanism: canonical timestamp extraction, deterministic alignment logic, and immutable session artifacts.
 
 - **Explicit alignment semantics**:
-    Cross-modal alignment always records the exact time delta between modalities. No hidden interpolation is performed.
-    Mechanism: canonical timestamp extraction, deterministic alignment logic, and immutable session artifacts.
+  Cross-modal alignment always records the exact time delta between modalities. No hidden interpolation is performed.
+  Mechanism: canonical timestamp extraction, deterministic alignment logic, and immutable session artifacts.
 
 - **Invariant-validated datasets**:
-    Alignment and episode artifacts are validated using structural invariants to detect corruption or schema violations.
-    Mechanism: invariant checks applied to alignment and episode artifacts.
+  Alignment and episode artifacts are validated using structural invariants to detect corruption or schema violations.
+  Mechanism: invariant checks applied to alignment and episode artifacts.
 
 - **Observable dataset health**:
-    The system computes dataset health metrics (alignment error, missing data ratio, episode fragmentation) to make dataset quality measurable.
-    Mechanism: automated dataset health metrics generated during pipeline execution.
+  The system computes dataset health metrics (alignment error, missing data ratio, episode fragmentation) to make dataset quality measurable.
+  Mechanism: automated dataset health metrics generated during pipeline execution.
 
 ----------
 
@@ -563,6 +582,7 @@ robotics_data_engine enforces several guarantees over constructed datasets.
 ## Future Extensions
 
 Possible future extensions include:
+
 - Parquet dataset storage
 - Distributed preprocessing with Spark or Ray
 - Streaming ingestion simulation
@@ -579,6 +599,7 @@ These extensions would simulate aspects of large-scale robotics data infrastruct
 This project focuses on dataset construction and validation infrastructure.
 
 It does not include:
+
 - model training pipelines
 - annotation systems
 - distributed storage systems
