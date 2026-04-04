@@ -4,11 +4,10 @@
 ![License](https://img.shields.io/badge/license-portfolio-lightgrey)
 
 A deterministic data pipeline that converts raw multimodal robot logs
-(video + sensor streams) into aligned, validated datasets for machine
-learning training and evaluation.
+(video + sensor streams) into aligned, validated datasets and metadata
+for machine learning training and evaluation pipelines.
 
-This project builds aligned, versioned robotics datasets from raw robot video and sensor logs.  
-The pipeline performs ingestion, cross-modal alignment, episode extraction, dataset validation, and health analysis to simulate the core data infrastructure used in robotics ML systems.
+This project builds aligned, versioned robotics datasets from raw robot video and sensor logs. The pipeline performs ingestion, cross-modal alignment, episode extraction, dataset validation, and health analysis to simulate the core data infrastructure used in robotics ML systems.
 
 ----------
 
@@ -32,6 +31,9 @@ Episode extraction
 Dataset validation + health metrics
 (missing data ratio, alignment error, episode statistics)
 ↓
+Artifact fingerprinting
+(versioning)
+↓
 Versioned dataset artifacts
 ```
 
@@ -40,6 +42,8 @@ The goal is to model the data infrastructure used in robotics and embodied AI tr
 ----------
 
 ## Example Dataset Outputs
+
+Below are representative artifacts produced by the pipeline.
 
 ### Alignment health metrics
 
@@ -73,20 +77,20 @@ Continuous sequences of aligned frames used for downstream training.
   "episode_count": 1,
   "episodes": [
     {
-      "end_frame_idx": 99,
-      "end_t": 3.3,
       "episode_id": 0,
-      "length": 100,
       "start_frame_idx": 0,
-      "start_t": 0.0
+      "end_frame_idx": 99,
+      "length": 100,
+      "start_t": 0.0,
+      "end_t": 3.3
     }
   ],
   "summary": {
     "episode_count": 1,
+    "total_frames_in_episodes": 100,
     "max_length": 100,
     "mean_length": 100.0,
-    "min_length": 100,
-    "total_frames_in_episodes": 100
+    "min_length": 100
   }
 }
 ```
@@ -95,7 +99,7 @@ Continuous sequences of aligned frames used for downstream training.
 
 The pipeline outputs trajectory episodes, which represent continuous aligned segments of multimodal robot data. These segments identify portions of the dataset where video frames and sensor streams remain consistently synchronized.
 
-A downstream training pipeline can use `episodes.json` to gather the corresponding video frames and sensor measurements for each episode and convert them into sliding windows used as training samples for machine learning models.
+A downstream training pipeline can use `episodes.json` to gather the corresponding video frames and sensor measurements for each episode and convert them into sliding windows used as training samples in downstream ML pipelines.
 
 ```text
 Raw robot logs
@@ -160,8 +164,8 @@ Content hash manifest ensuring reproducible dataset artifacts.
 
 - Deterministic dataset construction
 - Canonical timestamp extraction and cross-modal alignment
-- Structural invariant validation
 - Episode extraction for trajectory learning
+- Structural invariant validation
 - Dataset health metrics and quality signals
 - Artifact fingerprinting for reproducibility
 
@@ -217,7 +221,7 @@ video and multi-sensor logs.
 1. Clone the repository
 
 ```bash
-git clone https://github.com/philzd/robotics_data_engine.git
+git clone https://github.com/philzd/robotics-data-engine.git
 cd robotics_data_engine
 ```
 
@@ -315,8 +319,8 @@ Inputs
 │   • deterministic data ingestion   │
 │   • canonical timestamp extraction │
 │   • cross-modal alignment          │
-│   • invariant validation           │
 │   • episode extraction             │
+│   • invariant validation           │
 │   • dataset health metrics         │
 │   • artifact fingerprinting        │
 └────────────────────────────────────┘
@@ -442,7 +446,7 @@ Episodes represent training-ready trajectory segments.
 
 ### 4. Dataset Validation
 
-Structural invariants verify that dataset artifacts satisfy expected schema and alignment contracts.
+Structural invariants verify that dataset artifacts satisfy expected schema and alignment contracts. Validation is applied after alignment and episode extraction artifacts are produced.
 
 Examples:
 - frame index continuity
@@ -495,7 +499,7 @@ python -m robotics_data_engine ingest \
 python -m robotics_data_engine align --session demo_session
 ```
 
-Produces alignment artifacts and dataset health metrics.
+Produces alignment artifacts, validation outputs, and dataset health metrics.
 
 ### Validate dataset integrity
 
@@ -570,7 +574,7 @@ robotics_data_engine enforces several guarantees over constructed datasets.
 
 ----------
 
-## Technologies Used
+## Tech Stack
 
 - Python
 - Typer (CLI framework)
@@ -583,12 +587,12 @@ robotics_data_engine enforces several guarantees over constructed datasets.
 
 Possible future extensions include:
 
-- Parquet dataset storage
-- Distributed preprocessing with Spark or Ray
-- Streaming ingestion simulation
+- Parquet-based dataset storage
+- Distributed batch processing (Spark or Ray)
+- Streaming ingestion simulation (Kafka-style)
 - Dataset partitioning and sharding
-- Cloud storage integration
-- Dataset latency benchmarking
+- Cloud-based storage and execution
+- Dataset latency and performance measurement
 
 These extensions would simulate aspects of large-scale robotics data infrastructure.
 
