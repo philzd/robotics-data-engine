@@ -486,6 +486,8 @@ run individually depending on the workflow.
 
 ### Ingest a session
 
+Copies raw inputs into a session and prepares normalized artifacts.
+
 ```bash
 python -m robotics_data_engine ingest \
     --session demo_session \
@@ -495,29 +497,31 @@ python -m robotics_data_engine ingest \
 
 ### Align multimodal data
 
+Performs cross-modal alignment and generates alignment artifacts, health metrics, and validation signals.
+
 ```bash
 python -m robotics_data_engine align --session demo_session
 ```
 
-Produces alignment artifacts, validation outputs, and dataset health metrics.
-
 ### Validate dataset integrity
+
+Runs invariant checks over alignment and episode artifacts.
 
 ```bash
 python -m robotics_data_engine validate --session demo_session
 ```
 
-Runs invariant checks over dataset artifacts.
-
 ### Process all sessions
+
+Runs alignment across all sessions in the sessions directory.
 
 ```bash
 python -m robotics_data_engine align-all
 ```
 
-Batch processes every session in sessions directory.
-
 ### Dataset summary
+
+Aggregates dataset health metrics across sessions.
 
 Summarize dataset health across sessions:
 ```bash
