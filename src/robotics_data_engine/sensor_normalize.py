@@ -1,5 +1,5 @@
 """
-Sensor normalization utilities for robotics_data_engine.
+Sensor normalization utilities.
 
 This module converts raw sensor CSV logs into a canonical format with a
 standardized `t_sec` timestamp column. The normalized output ensures:
@@ -10,12 +10,12 @@ standardized `t_sec` timestamp column. The normalized output ensures:
 
 The function returns basic statistics used for QA reporting.
 """
+
 from __future__ import annotations
 
 import csv
 from pathlib import Path
 from typing import Dict, List
-
 
 def normalize_sensor_csv(
     raw_sensor_path: Path,

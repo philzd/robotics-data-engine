@@ -1,5 +1,5 @@
 """
-File hashing utilities for robotics_data_engine.
+File hashing utilities.
 
 Provides deterministic SHA-256 hashing for artifacts produced by the
 data pipeline. Hashes are used for provenance tracking and reproducibility,
@@ -9,11 +9,11 @@ Important:
 - Uses chunked reads to support large files (e.g., videos).
 - Pure utility functions (no side effects beyond reading files).
 """
+
 from __future__ import annotations
 
 import hashlib
 from pathlib import Path
-
 
 def sha256_file(path: Path, chunk_size: int = 1024 * 1024) -> str:
     """

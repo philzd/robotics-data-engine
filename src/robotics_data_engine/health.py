@@ -1,5 +1,5 @@
 """
-Alignment health metrics for robotics_data_engine.
+Alignment health metrics.
 
 Computes dataset halth signals from alignment_map. rows.
 
@@ -7,10 +7,10 @@ Important:
 - Pure computation (no file I/O).
 - Deterministic outputs.
 """
+
 from __future__ import annotations
 
 from typing import Any, Dict, List
-
 
 def _percentile(sorted_vals: List[float], p: float) -> float:
     """

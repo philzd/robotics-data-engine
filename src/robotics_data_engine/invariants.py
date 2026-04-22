@@ -1,12 +1,12 @@
 """
-Alignment invariants for robotics_data_engine.
+Alignment invariants.
 
 This module validates structural guarantees over alignment_map rows.
 It does not read or write files, print output, or mutate artifacts.
 Instead, it returns structured validation results for the CLI layer.
 """
-from typing import List, Dict, Any
 
+from typing import List, Dict, Any
 
 def check_alignment_invariants(
         alignment_rows: List[Dict[str, Any]],
@@ -183,5 +183,3 @@ def check_alignment_invariants(
         "violation_count": len(violations),
         "violations": violations[:50],   # Limit size for safety.
     }
-        
-    

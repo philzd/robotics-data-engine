@@ -1,5 +1,5 @@
 """
-I/O utilities for robotics_data_engine.
+I/O utilities.
 
 Provides small, deterministic helpers for reading and writing JSON
 and JSONL artifacts used throughout the pipeline.
@@ -7,12 +7,12 @@ and JSONL artifacts used throughout the pipeline.
 These helpers are centralized so modules do not duplicate slightly
 different file-handling behavior.
 """
+
 from __future__ import annotations
 
 import json
 from pathlib import Path
 from typing import Any, Dict, List
-
 
 def read_jsonl(path: Path) -> List[Dict[str, Any]]:
     """
@@ -26,6 +26,7 @@ def read_jsonl(path: Path) -> List[Dict[str, Any]]:
                 continue
             rows.append(json.loads(line))
     return rows
+
 
 def write_json(path: Path, obj: Dict[str, Any]) -> None:
     """

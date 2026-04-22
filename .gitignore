@@ -11,6 +11,9 @@ env/
 
 # Dataset outputs
 sessions/
+datasets/
+data_labels/
+*.parquet
 
 # macOS
 .DS_Store

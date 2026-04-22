@@ -1,15 +1,15 @@
 """
-Artifact fingerprinting for robotics_data_engine.
+Artifact fingerprinting.
 
 Create deterministic fingerprints for alignment and episode artifacts.
 """
+
 from __future__ import annotations
 
 from pathlib import Path
 from typing import Any, Dict
 
 from .hashing import sha256_file
-
 
 def compute_alignment_fingerprint(
     *,

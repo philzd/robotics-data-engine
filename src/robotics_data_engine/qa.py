@@ -1,5 +1,5 @@
 """
-Quality assurance reporting utilities for robotics_data_engine.
+Quality assurance reporting utilities.
 
 This module generates machine-readable QA reports summarizing basic
 properties of ingested data, such as video duration estimates and
@@ -8,12 +8,12 @@ sensor normalization statistics.
 The QA report provides lightweight diagnostics and warnings without
 mutating dataset artifacts.
 """
+
 from __future__ import annotations
 
 import json
 from pathlib import Path
 from typing import Any, Dict, Optional
-
 
 def write_qa_report(
     output_path: Path,

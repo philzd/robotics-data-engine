@@ -1,14 +1,14 @@
 """
-Session path contract for robotics_data_engine.
+Session path contract.
 
 A Session represents one robot run / one log bundle and provides
 path helpers for the on-disk session layout defined in the README.
 """
+
 from __future__ import annotations
 from dataclasses import dataclass
 from pathlib import Path
 from . import config
-
 
 @dataclass(frozen=True)
 class Session:

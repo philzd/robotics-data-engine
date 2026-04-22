@@ -1,5 +1,5 @@
 """
-Video timestamp generation for robotics_data_engine.
+Video timestamp generation.
 
 This module produces deterministic frame timestamps for a video
 recording using the policy: timestamp = frame_idx / fps
@@ -7,9 +7,9 @@ recording using the policy: timestamp = frame_idx / fps
 The output is written as a JSONL file where each row corresponds to a
 video frame.
 """
+
 from pathlib import Path
 import json
-
 
 def write_video_timestamps(
     raw_video_path: Path,

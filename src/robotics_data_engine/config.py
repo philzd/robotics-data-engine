@@ -1,11 +1,11 @@
 """
-Configuration constants for robotics_data_engine.
+Configuration constants.
 
 Centralizes directory names, standard filenames, and artifact names so
 the session contract remains consistent across the codebase and README.
 """
-from dataclasses import dataclass
 
+from dataclasses import dataclass
 
 # Session directory names.
 SESSIONS_DIRNAME = "sessions"

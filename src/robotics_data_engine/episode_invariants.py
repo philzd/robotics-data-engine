@@ -7,9 +7,9 @@ This module:
 
 Fail-fast behavior is handled by the CLI layer.
 """
+
 from __future__ import annotations
 from typing import Any, Dict, List
-
 
 def check_episode_invariants(episode_artifact: Dict[str, Any]) -> Dict[str, Any]:
     """
@@ -181,6 +181,7 @@ def check_episode_invariants(episode_artifact: Dict[str, Any]) -> Dict[str, Any]
         prev_end = e
     
     return _result(violations)
+
 
 def _result(violations: List[Dict[str, Any]]) -> Dict[str, Any]:
     """

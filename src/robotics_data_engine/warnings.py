@@ -8,10 +8,10 @@ Important:
 - Pure computation (no file I/O).
 - Deterministic outputs.
 """
+
 from __future__ import annotations
 
 from typing import Any, Dict, List
-
 
 def compute_alignment_warnings(
         health: Dict[str, Any],

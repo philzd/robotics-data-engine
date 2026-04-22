@@ -5,6 +5,7 @@ Aligns sensor timestamps onto the canonical video frame timebase and
 produces deterministic alignment artifacts for downstream dataset
 construction and evaluation.
 """
+
 from __future__ import annotations
 
 import csv
@@ -12,7 +13,6 @@ import json
 from dataclasses import dataclass
 from pathlib import Path
 from bisect import bisect_left
-
 
 @dataclass(frozen=True)
 class AlignmentReport:
@@ -28,6 +28,7 @@ class AlignmentReport:
     dt_abs_max: float
     max_dt_threshold: float
     warnings: list[str]
+
 
 def load_video_timestamps(path: Path) -> list[tuple[int, float]]:
     """
@@ -69,6 +70,7 @@ def load_sensor_times(path: Path) -> list[float]:
 
     return times
 
+
 def classify_missing_reason(
     *,
     t_frame: float,
@@ -103,6 +105,7 @@ def classify_missing_reason(
         return "GAP_TOO_LARGE"
 
     return "UNKNOWN"
+
 
 def find_nearest_sensor_index(
         sensor_ts: list[float],
@@ -139,6 +142,7 @@ def find_nearest_sensor_index(
             best_j = j
     
     return best_j, best_abs_dt
+
 
 def align_nearest(
     video_ts: list[tuple[int, float]],
@@ -315,6 +319,7 @@ def align_nearest(
 
     return out_rows, report
 
+
 def compute_alignment_examples(alignment_rows: list[dict], *, top_k: int = 20) -> dict:
     """
     Produce small explainability samples for debugging and review.
@@ -386,6 +391,7 @@ def compute_alignment_examples(alignment_rows: list[dict], *, top_k: int = 20) -
         "missing_reason_examples": missing_reason_examples,
         "top_k": int(top_k),
     }
+
 
 def write_alignment_map(path: Path, rows: list[dict]) -> None:
     """

@@ -5,9 +5,9 @@ An episode is a contiguous sequence of frames where status == "matched".
 Episodes represent training-ready trajectory segments for downstream
 ML pipelines.
 """
+
 from __future__ import annotations
 from typing import List, Dict, Any
-
 
 def compute_episodes(
         alignment_rows: List[Dict[str, Any]]
@@ -71,6 +71,7 @@ def compute_episodes(
     
     return episodes
 
+
 def compute_episodes_summary(episodes: List[Dict[str, Any]]) -> Dict[str, Any]:
     """
     Compute deterministic summary statistics over extracted episodes.
@@ -94,6 +95,7 @@ def compute_episodes_summary(episodes: List[Dict[str, Any]]) -> Dict[str, Any]:
         "max_length": int(max(lengths)),
         "mean_length": float(total / len(lengths)),
     }
+
 
 def build_episodes_artifact(
         alignment_rows: List[Dict[str, Any]],

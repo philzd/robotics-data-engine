@@ -1,5 +1,5 @@
 """
-Command-line interface for robotics_data_engine.
+Command-line interface.
 
 This module defines:
 - The top-level Typer application.
@@ -10,6 +10,7 @@ Important:
 - The CLI only orchestrates the pipeline.
 - Core data processing logic lives in dedicated modules (alignment, episodes, invariants, health, fingerprinting).
 """
+
 import json
 import shutil
 import typer
@@ -37,7 +38,6 @@ from .episodes import build_episodes_artifact
 from .episode_invariants import check_episode_invariants
 from .episode_health import compute_episode_health
 
-
 __version__ = "0.1.0"
 
 app = typer.Typer(help="robotics_data_engine: multimodal robotics data engine.")
@@ -54,7 +54,8 @@ def _require_file(path_str: str, label: str) -> None:
         raise typer.BadParameter (f"{label} file not found: {path_str}")
     if not p.is_file():
         raise typer.BadParameter(f"{label} path is not a file: {path_str}")
-    
+
+
 def _copy_to_raw(src: str, raw_dir: Path) -> Path:
     """
     Copy a file into the session's raw/ directory.
@@ -69,6 +70,7 @@ def _copy_to_raw(src: str, raw_dir: Path) -> Path:
     dst_path = raw_dir / src_path.name
     shutil.copy2(src_path, dst_path)
     return dst_path
+
 
 def _write_manifest(session_obj: Session, copied: dict[str, Path], *, fps:float, frame_count: int) -> None:
     """
@@ -99,6 +101,7 @@ def _write_manifest(session_obj: Session, copied: dict[str, Path], *, fps:float,
     with open(session_obj.manifest_path, "w", encoding="utf-8") as f:
         json.dump(manifest, f, indent=2)
 
+
 @app.command()
 def version():
     """
@@ -108,6 +111,7 @@ def version():
     can quickly verify which version produced a dataset.
     """
     typer.echo(f"robotics_data_engine {__version__}")
+
 
 @app.command()
 def ingest(
@@ -181,6 +185,7 @@ def ingest(
     typer.echo(f"  session_dir: {session_obj.session_dir}")
     for k, v in copied.items():
         typer.echo(f"  copied {k}: {v}")
+
 
 @app.command()
 def align(
@@ -331,6 +336,7 @@ def align(
     if report.warnings:
         typer.echo(f"  warnings: {', '.join(report.warnings)}")
 
+
 @app.command()
 def align_all(
     root: str = typer.Option("sessions", "--root", help="Root directory for sessions."),
@@ -385,6 +391,7 @@ def align_all(
         typer.echo("  failed_sessions:")
         for s in failed_sessions:
             typer.echo(f"    - {s}")
+
 
 @app.command()
 def validate(
@@ -443,6 +450,7 @@ def validate(
         raise typer.Exit(code=1)
 
     typer.echo("  overall: PASSED")
+
 
 @app.command()
 def dataset_summary(
@@ -541,8 +549,10 @@ def dataset_summary(
         typer.echo(f"  worst_session: {worst_session}")
         typer.echo(f"  worst_session_matched_ratio: {worst_matched_ratio}")
 
+
 def main():
     app()
+
 
 if __name__ == "__main__":
     main()
