@@ -287,16 +287,16 @@ The system is designed to mirror the structure of real-world robotics ML data pl
 
 ----------
 
-## What robotics_data_engine Is / Is Not
+## What This Project Is / Is Not
 
-## Is
+### Is
 
 - A dataset construction layer for robotics logs
 - A deterministic pipeline for multimodal alignment
 - A framework for dataset validation and health metrics
 - A reproducible artifact generation system
 
-## Is Not
+### Is Not
 
 - A labeling / annotation UI
 - A distributed compute system
@@ -723,8 +723,3 @@ Please contact the author for permission before reusing or redistributing the co
 ## Author
 
 Philippe Do
-
-Focus areas:
-- robotics ML infrastructure
-- multimodal data pipelines
-- distributed ML systems
