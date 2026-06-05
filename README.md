@@ -186,7 +186,7 @@ Content hash manifest ensuring reproducible dataset artifacts.
 - [Core Guarantees](#core-guarantees)
 - [Data Guarantees](#data-guarantees)
 - [Technologies Used](#technologies-used)
-- [Extensions](#extensions-dataset-layer-and-inspection-tooling)
+- [Extensions](#extensions)
 - [Future Extensions](#future-extensions)
 - [Project Scope](#project-scope)
 - [Usage Notice](#usage-notice)
@@ -418,6 +418,7 @@ Artifacts produced:
 - `session_manifest.json`
 
 Video timestamps follow the deterministic rule:
+
 `t_frame = frame_idx / fps`
 
 ### 2. Cross-Modal Alignment
@@ -435,6 +436,7 @@ Artifacts produced:
 - `alignment_fingerprint.json`
 
 Alignment explicitly records the time delta between modalities.
+
 `dt = t_sensor - t_frame`
 
 No hidden interpolation occurs to avoid introducing artificial
@@ -550,14 +552,17 @@ Example CLI output:
 
 robotics_data_engine enforces three core guarantees.
 
-- **Determinism**:
-  Given identical inputs and configuration, derived artifacts are identical.
+### Determinism
 
-- **Reproducibility**:
-  Datasets can be rebuilt from raw data and manifest metadata.
+Given identical inputs and configuration, derived artifacts are identical.
 
-- **Provenance**:
-  Every artifact records its origin, configuration, and creation time.
+### Reproducibility
+
+Datasets can be rebuilt from raw data and manifest metadata.
+
+### Provenance
+
+Every artifact records its origin, configuration, and creation time.
 
 These guarantees are enforced through:
 
@@ -572,21 +577,29 @@ These guarantees are enforced through:
 
 robotics_data_engine enforces several guarantees over constructed datasets.
 
-- **Deterministic dataset construction**:
-  Given identical raw inputs and configuration, the pipeline produces identical derived artifacts.
-  Mechanism: canonical timestamp extraction, deterministic alignment logic, and immutable session artifacts.
+### Deterministic dataset construction
 
-- **Explicit alignment semantics**:
-  Cross-modal alignment always records the exact time delta between modalities. No hidden interpolation is performed.
-  Mechanism: canonical timestamp extraction, deterministic alignment logic, and immutable session artifacts.
+Given identical raw inputs and configuration, the pipeline produces identical derived artifacts.
 
-- **Invariant-validated datasets**:
-  Alignment and episode artifacts are validated using structural invariants to detect corruption or schema violations.
-  Mechanism: invariant checks applied to alignment and episode artifacts.
+Mechanism: canonical timestamp extraction, deterministic alignment logic, and immutable session artifacts.
 
-- **Observable dataset health**:
-  The system computes dataset health metrics (alignment error, missing data ratio, episode fragmentation) to make dataset quality measurable.
-  Mechanism: automated dataset health metrics generated during pipeline execution.
+### Explicit alignment semantics
+
+Cross-modal alignment always records the exact time delta between modalities. No hidden interpolation is performed.
+
+Mechanism: canonical timestamp extraction, deterministic alignment logic, and immutable session artifacts.
+
+### Invariant-validated datasets
+
+Alignment and episode artifacts are validated using structural invariants to detect corruption or schema violations.
+
+Mechanism: invariant checks applied to alignment and episode artifacts.
+
+### Observable dataset health
+
+The system computes dataset health metrics (alignment error, missing data ratio, episode fragmentation) to make dataset quality measurable.
+
+Mechanism: automated dataset health metrics generated during pipeline execution.
 
 ---
 
@@ -594,7 +607,7 @@ robotics_data_engine enforces several guarantees over constructed datasets.
 
 - Python
 - Typer (CLI framework)
-- JSON / CSV artifact pipelines
+- JSONL / CSV artifact pipelines
 - SHA-256 artifact fingerprinting
 
 ---
@@ -677,7 +690,13 @@ Stored labels:
 ### End-to-End Workflow
 
 ```text
-Parquet dataset → inspection → labeling → curated dataset
+Parquet dataset
+↓
+Inspection
+↓
+Labeling
+↓
+Curated dataset
 ```
 
 This models how real-world robotics and ML systems incorporate
