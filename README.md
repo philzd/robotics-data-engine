@@ -192,7 +192,7 @@ Artifact:
 - [Core Guarantees](#core-guarantees)
 - [Data Guarantees](#data-guarantees)
 - [Tech Stack](#tech-stack)
-- [Extensions](#extensions)
+- [Extensions: Dataset Layer and Inspection Tooling](#extensions-dataset-layer-and-inspection-tooling)
 - [Future Extensions](#future-extensions)
 - [Project Scope](#project-scope)
 - [Usage Notice](#usage-notice)
