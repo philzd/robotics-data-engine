@@ -51,6 +51,8 @@ Below are representative artifacts produced by the pipeline.
 
 Derived dataset health signals produced during cross-modal alignment.
 
+Artifact:
+
 `derived/alignment_health.json`
 
 ```json
@@ -71,6 +73,8 @@ Derived dataset health signals produced during cross-modal alignment.
 ### Extracted trajectory episodes
 
 Continuous sequences of aligned frames used for downstream training.
+
+Artifact:
 
 `derived/episodes.json`
 
@@ -135,6 +139,8 @@ In practice, the training loader reads the episode boundaries, collects the corr
 
 Content hash manifest ensuring reproducible dataset artifacts.
 
+Artifact:
+
 `manifests/alignment_fingerprint.json`
 
 ```json
@@ -185,7 +191,7 @@ Content hash manifest ensuring reproducible dataset artifacts.
 - [CLI Commands](#cli-commands)
 - [Core Guarantees](#core-guarantees)
 - [Data Guarantees](#data-guarantees)
-- [Technologies Used](#technologies-used)
+- [Tech Stack](#tech-stack)
 - [Extensions](#extensions)
 - [Future Extensions](#future-extensions)
 - [Project Scope](#project-scope)
