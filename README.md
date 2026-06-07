@@ -184,7 +184,7 @@ Artifact:
 - [Quick Demo](#quick-demo)
 - [Getting Started](#getting-started)
 - [Why This Project Exists](#why-this-project-exists)
-- [What robotics_data_engine Is and Is Not](#what-robotics_data_engine-is--is-not)
+- [What This Project Is and Is Not](#what-this-project-is--is-not)
 - [System Architecture](#system-architecture)
 - [Session Directory Contract](#session-directory-contract)
 - [Pipeline Stages](#pipeline-stages)
@@ -739,7 +739,7 @@ It does not include:
 
 ## Usage Notice
 
-This repository is shared for portfolio and evaluation purposes.
+This repository is shared for portfolio, educational, and demonstration purposes.
 
 Please contact the author for permission before reusing or redistributing the code.
 
